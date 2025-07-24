@@ -1,0 +1,105 @@
+
+#MyForm{
+    display: block;
+    
+}
+@keyframes appear {
+    0%{
+        top:100%;
+        backdrop-filter: blur(0px);
+    }
+    100%{
+        top:0%;
+        backdrop-filter: blur(2px);
+    }
+    
+}
+@keyframes disappear {
+    0%{
+        top:0%;
+        backdrop-filter: blur(2px);
+    }
+    100%{
+        top:100%;
+        backdrop-filter: blur(0px);
+    }
+    
+}
+form{
+    position: fixed;
+    width:100vw;
+    z-index: 9999;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    display:flex;
+}
+.submitBtn{
+    width:80%;
+    text-align: center;
+    color:white;
+    background-color: orangered;
+    font-family: "Saira Extra Condensed", sans-serif;
+    border: none;
+    min-height: 8vh;
+    border-radius: 8px;
+    margin-top: 6px;
+    margin-bottom: 16px;
+}
+.visitBtn{
+    display: inline-block;
+    position: relative;
+    overflow: visible;
+    border-radius: 4px;
+    filter: blur(0);
+    background-color: #007bff;
+    border: none;
+    z-index: 2;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    cursor: pointer;
+    margin: 5px;
+    
+}
+i:hover{
+    cursor: pointer;
+}
+.visitBtn span{
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+.visitBtn span:after{
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+}
+.visitBtn:hover span{
+    padding-right: 25px;
+}
+#backCont{
+    width: 80%;
+}
+#backIcon{
+    align-self: flex-start; 
+    margin-top: 6px;
+    margin-bottom: 16px;
+    color: white;
+
+}
+input[type = text], select,textarea{
+    padding: 20px ;
+    width: 80%;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 4px;
+    outline:none;
+    cursor: pointer;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
