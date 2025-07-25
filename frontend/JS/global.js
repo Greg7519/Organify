@@ -1,4 +1,4 @@
 function exportGlobalVar(){
-    return {serverLoc: "http://127.0.0.1:3000/", frontendLoc: "http://127.0.0.1:3000/"}
+    return {serverLoc: "https://organify.onrender.com/", frontendLoc:"https://organify.onrender.com/"}
 }
 export default exportGlobalVar
