@@ -19,6 +19,13 @@ body,html{
     margin-bottom: 20px;
     
 }
+.link{
+   
+    color: rgb(0, 76, 255)
+}
+.link:hover{
+    text-decoration: underline;
+}
 #infoHeader{
     text-align: center;
 }
