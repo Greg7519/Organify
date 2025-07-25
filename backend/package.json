@@ -5,7 +5,7 @@
   "type": "commonjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run start  ",
+    "start": "node userReg.js",
     "dev": "nodemon userReg.js ",
     "build":"npm install "
   },
