@@ -5,9 +5,9 @@
   "type": "commonjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run dev",
-    "dev": "nodemon userReg.js",
-    "build":"npm install"
+    "start": "npm run start --prefix backend",
+    "dev": "nodemon userReg.js --prefix backend",
+    "build":"npm install --prefix backend"
   },
   "author": "",
   "license": "ISC",
