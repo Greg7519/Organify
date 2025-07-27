@@ -2,11 +2,13 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const mongodb = require("mongodb")
-const connectionString = "mongodb+srv://gregangeloppulos:gaming4life@cluster0.pkp1lft.mongodb.net/test?retryWrites=true&w=majority";
+const dotenv = require("dotenv");
+dotenv.config()
+const connectionString = process.env.MONGO_URI
 const client =  new mongodb.MongoClient(connectionString);
 const myDb = client.db("users");
 const myColl = myDb.collection("users")
-const connection = mongoose.createConnection( "mongodb+srv://gregangeloppulos:gaming4life@cluster0.pkp1lft.mongodb.net/test?retryWrites=true&w=majority")
+const connection = mongoose.createConnection(connectionString)
 const schema = mongoose.Schema;
 const connectDb =async ()=>{
    await mongoose.connect(connectionString)
