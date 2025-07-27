@@ -2,8 +2,8 @@ const mongodb = require("mongodb");
 const jwt  = require("jsonwebtoken");
 const dotenv = require("dotenv");
 //import module, then start with new
-var userM = require("./userModel");
-var TaskM = require("./taskModel")
+var userM = require("./userModel.js");
+var TaskM = require("./taskModel.js")
 const path = require("path")
 const {sendMail} = require('./emailVerify.js')
 const express = require("express");
@@ -64,10 +64,10 @@ app.use(session({
    saveUninitialized:true,
    cookie:{secure:false}
 }))
-var optionsHttps = {
-  key: fs.readFileSync('keys/key.pem'),
-  cert: fs.readFileSync('keys/cert.pem')
-};
+// var optionsHttps = {
+//   key: fs.readFileSync('keys/key.pem'),
+//   cert: fs.readFileSync('keys/cert.pem')
+// };
 const requireAuth  = (req, res, next) =>{
    if(req.session.docId){
       console.log("in service..")
@@ -491,3 +491,4 @@ app.post("/login", async(req,res,next) =>{
 
 
 app.listen(3000)
+module.exports = app;
