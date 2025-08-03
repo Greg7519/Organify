@@ -22,7 +22,7 @@ dotenv.config()
 // };
 const MONGO_URI = process.env.MONGO_URI;
 const FPORT = process.env.FPORT;
-const BPORT = process.env.BPORT;
+
 
 const client =  new mongodb.MongoClient(MONGO_URI);
 const myDb = client.db("users");
@@ -325,7 +325,7 @@ app.get("/checkVer", requireAuth,async(req, res)=>{
       res.json({redirect:false})
    }
    else{
-      res.redirect(`${FPORT}/main.html` )
+      res.redirect(`main.html` )
    }
 })
 

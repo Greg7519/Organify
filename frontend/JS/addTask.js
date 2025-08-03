@@ -6,13 +6,27 @@ const form= document.getElementById("form");
 const header =document.getElementById("infoHeader")
 const userInp = document.getElementById("fname");
 userInp.value = user;
+var dateReg = /(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0,1,2])\/(19|20)\d{2}/
+const currDate = new Date()
 form.addEventListener("submit", async(e) =>{
           e.preventDefault()      
           const dataForm = new FormData(form);
           console.log(dataForm)
           const data = new URLSearchParams(dataForm).toString()
-          console.log(data)
-           fetch(`${globalVariables.serverLoc}addTask`,{
+          var date = dataForm.get("Date")
+          console.log(currDate)
+          var reversedDate = date.split("/").reverse().join("-");
+          console.log(dateReg.test(date))
+          if(!dateReg.test(date)){
+            window.alert("Invalid date entered!Enter valid date in dd/mm/yyyy")
+           
+          }
+          if(new Date(reversedDate) < currDate){
+            console.log(reversedDate, currDate.toLocaleDateString("en-CA"))
+            window.alert("Dont enter a past date")
+          }
+          else{
+              fetch(`${globalVariables.serverLoc}addTask`,{
             method:'POST',
             body:data,
             mode:"cors",
@@ -32,6 +46,7 @@ form.addEventListener("submit", async(e) =>{
                 }, 1000)
             }
             if(resp.redirected){
+                window.alert("Task added!")
                 console.log(resp.url)
                 WelcHed.innerHTML = "Not signed in redirecting..."
                 setTimeout(()=>{
@@ -42,6 +57,8 @@ form.addEventListener("submit", async(e) =>{
         }).then(()=>{
           
         })
+          }
+         
        
          
             

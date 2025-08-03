@@ -1,3 +1,5 @@
+const dotenv = require("dotenv");
+dotenv.config()
 const nodemailer = require('nodemailer');
 const jwt  = require("jsonwebtoken");
 function sendMail(receiptEmail, subject, text, hasToken=false){
@@ -8,8 +10,8 @@ function sendMail(receiptEmail, subject, text, hasToken=false){
     port: 465,
     secure: true,
     auth:{
-        user: "serverresponse120@gmail.com",
-        pass: "jxon ehxt xfxc cnto"}
+        user: process.env.EMAIL_SENDER,
+        pass: process.env.EMAIL_PASS}
     })
     var token;
     if(hasToken){
@@ -24,7 +26,7 @@ function sendMail(receiptEmail, subject, text, hasToken=false){
   
     var mailOptions = {
 
-        from:'serverresponse120@gmail.com',
+        from: process.env.EMAIL_SENDER,
         to:receiptEmail,
         subject:subject,
         text:text + token
