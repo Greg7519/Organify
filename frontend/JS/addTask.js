@@ -40,13 +40,13 @@ form.addEventListener("submit", async(e) =>{
             credentials:"include"
         }).then((resp)=>{
             if(resp.status == 200){
-
+                 window.alert("Task added!")
                 setTimeout(()=>{
                     window.location.href = `${globalVariables.frontendLoc}main.html`
                 }, 1000)
             }
             if(resp.redirected){
-                window.alert("Task added!")
+               
                 console.log(resp.url)
                 WelcHed.innerHTML = "Not signed in redirecting..."
                 setTimeout(()=>{
