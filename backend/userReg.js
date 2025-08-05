@@ -202,22 +202,38 @@ app.post("/addTask", requireAuth, async(req,res)=>{
 })
 app.get("/getTasks", requireAuth, async(req, res)=>{
 
-   myColl.findOne({name:req.session.name}).then((doc)=>{
-        
+   myColl.findOne({name:req.session.name}).then((userDoc)=>{
+      var currDate = new Date();
       try{
          var myTasks = {"tasks":[]};
-          doc.tasks.forEach((element,idx,array) => {
+         userDoc.tasks.forEach((element,idx,array) => {
             var myEl = element.toString()
          
          
             taskColl.findOne({"_id":mongodb.ObjectId.createFromHexString(myEl)}).then((doc) =>{
                   var obj = {name:doc.username, title: doc.taskInfo, dateDue:doc.dateDue}
-                  
-                  myTasks.tasks.push(obj)
-                  console.log(myTasks)
-                  if(idx==array.length -1){
+                  var reversedDate = doc.dateDue.split("/").reverse().join("-");
+                  console.log(new Date(reversedDate), currDate)
+                  if(new Date(reversedDate) < currDate){
+                     taskColl.deleteOne({"_id":doc._id}).then(()=>{
+                        var tasksArr = userDoc.tasks
+                       tasksArr = tasksArr.filter(item => item !== element)
+                       console.log(tasksArr)
+                        myColl.updateOne({name:
+                           userDoc.name
+                        }, {$set:{tasks:tasksArr}})
+                     })
                      
-                     res.json( JSON.parse(JSON.stringify(myTasks)))
+                     
+                  }
+                  else{
+                        myTasks.tasks.push(obj)
+                     console.log(myTasks)
+                    
+                  }
+                  if(idx==array.length -1){
+                        
+                        res.json( JSON.parse(JSON.stringify(myTasks)))
                   }
          
                
@@ -226,6 +242,7 @@ app.get("/getTasks", requireAuth, async(req, res)=>{
       });
       }
       catch{
+         console.log('error')
          res.json({msg:"No groups"})
       }
    })
