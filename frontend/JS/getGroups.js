@@ -25,6 +25,7 @@ await fetch(`${globalVariables.serverLoc}getUserGroups`,{method:'GET',
         }).then(json=>{
           
             var myGroups = loadJSON(json, "name", "admin","users", "users")
+            console.log(myGroups)
             var usernames = [];
             var groupsHead = document.createElement("h2");
             groupsHead.style.textAlign = "center"

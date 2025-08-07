@@ -262,36 +262,48 @@ app.get("/getUserInfo", requireAuth, async(req, res)=>{
 })
 app.get("/getUserGroups", requireAuth, async(req,res)=>{
    var groupsInfo ={"users":[]}
+   var i =0;
    myColl.findOne({name:req.session.name}).then(async(userDoc)=>{
       try{
-          userDoc.groupChats.forEach((element,idx,array) => {
-            var myEl = element.toString()
+          for await(var el of userDoc.groupChats) {
+            var myEl = await el.toString()
+            
+            
+            var myId = mongodb.ObjectId.createFromHexString(myEl)
          
-         
-            groupColl.findOne({"_id":mongodb.ObjectId.createFromHexString(myEl)}).then((doc) =>{
+            groupColl.findOne({"_id": myId}).then(async(doc) =>{
                   var obj = {name:doc.groupName, admin:doc.admin, users:doc.users}
-                  console.log(obj)
+                
                   groupsInfo.users.push(obj)
-
-                  if(idx==array.length -1){
+                  console.log(groupsInfo.users)
+                  
+                  console.log(myEl,i)
                      if(doc.users.length ==0){
                         var groupArr = userDoc.groupChats
-                        groupArr = groupArr.filter(item => item !== element)
+                        groupArr = groupArr.filter(item => item !== myEl)
                         myColl.updateOne({name:
                            userDoc.name
                         }, {$set:{groupChats:groupArr}})
                         deleteDoc(groupColl, "_id", doc._id )
                      }
-                     else{
-                         res.json( JSON.parse(JSON.stringify(groupsInfo)))
-                     }
+                       if(groupsInfo.users.length== userDoc.groupChats.length){
+                        res.json( JSON.parse(JSON.stringify(groupsInfo)))
+                        }
                     
-                  }
+                       
+                      
+                     
+                    
+            })
+            console.log(groupsInfo)
+            
          
                
-            })
+         }
+       
           
-      });
+          
+      
       }
       catch{
          res.json({msg:"No groups"})
