@@ -6,7 +6,9 @@ const addBtn = document.getElementById("searchIcon");
 form.addEventListener("submit", async(e) =>{
           e.preventDefault()
           const dataForm = new FormData(form);
+         
           const data = new URLSearchParams(dataForm).toString()
+
           const response=await fetch(`${globalVariables.serverLoc}createGroup`,{
             method:'POST',
             body:data,

@@ -6,7 +6,13 @@ const addBtn = document.getElementById("searchIcon");
 form.addEventListener("submit", async(e) =>{
           e.preventDefault()
           const dataForm = new FormData(form);
-          const data = new URLSearchParams(dataForm).toString()
+          if(dataForm.get("default-search") == null){
+
+          }
+          else{
+
+
+            const data = new URLSearchParams(dataForm).toString()
           const response=await fetch(`${globalVariables.serverLoc}addUsers`,{
             method:'POST',
             body:data,
@@ -39,6 +45,8 @@ form.addEventListener("submit", async(e) =>{
             
             
 
-        })})
+        })
+          }
+          })
     
         

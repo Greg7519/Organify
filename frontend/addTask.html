@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
       <link rel="stylesheet" href="CSS/main.css">
+       <script src="https://cdn.tailwindcss.com"></script>
       <link rel="stylesheet" href="CSS/form.css">
 </head>
 <body>
@@ -18,17 +19,17 @@
    
            <h3 id="infoHeader" style="text-align: center;"></h3>
             <form id="form">
-                <label for="fname">
+                <label for="fname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                     User name:
                 </label>
-                <input id="fname" type="text" placeholder="Name:" name="user" readonly required>
-                <label for="fname" id="Date">
+                <input id="fname" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" placeholder="Name:" name="user" readonly required>
+                <label for="fname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" id="Date">
                    Date task is due(DD/MM/YYYY format):
                 </label>
-                <input id="Date"  type="text" name="Date"  placeholder="Date:" required >
-                <label for="subject">Task information:</label>
-                <textarea  id="subject" name="task" type="text"placeholder= "Enter task information here:"style="min-height: 200px;"></textarea>
-                <button class=" visitBtn submitBtn" id="submitBtn" type="submit">
+                <input id="Date"  type="text" name="Date" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  placeholder="Date:" required >
+                <label for="subject"  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Task information:</label>
+                <textarea class="block  p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="subject" name="task" type="text"placeholder= "Enter task information here:"style="min-height: 200px;"></textarea>
+                <button class="submitBtn text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-2" id="submitBtn" type="submit">
                      <span> Submit</span>
                 </button>
                 <div id="backCont">

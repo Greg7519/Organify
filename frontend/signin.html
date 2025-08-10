@@ -5,22 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
      <link rel="stylesheet" href="CSS/main.css">
+     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
     <h2 id="signedCheck"></h2>
     <form  class="columnForm" id="dataForm" >
         <div class="formEl">
           <h2 id="dataSent"></h2>
-          <label for="email">
+          <label for="email"  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
             Enter username/email:
         </label>
-         <input type="text" id="email" name="email" required>
+         <input type="text" id="email" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
         </div>
         <div class="formEl">
-          <label for="password">
+          <label for="password"  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
             Enter password:
           </label>
-        <input type="password" id="password" name="password" required>
+        <input type="password" id="password" name="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
         </div>
         <div class="formEl">
           <a href="register.html" class="link">
@@ -28,7 +29,7 @@
           </a>
         </div>
          <div class="formEl">
-           <button id="submitBtn" type="submit" class="btn">SUBMIT</button>
+           <button id="submitBtn" type="submit"  class="btn text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">SUBMIT</button>
          </div>
         
           
