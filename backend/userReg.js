@@ -438,6 +438,7 @@ app.post("/login", async(req,res,next) =>{
                bcrypt.genSalt(10, (err, salt) =>{
                   if(err){
                      console.log("an error occured!")
+                     res.json({canSign:false, wrongPwd:true})
                   }
                   else{
                      bcrypt.hash(req.body.password, salt, (err,hash)=>{
@@ -476,7 +477,7 @@ app.post("/login", async(req,res,next) =>{
                                     // next();
                                  }
                                  else{
-                                    res.json({msg:"non matching password!", canSign:false, verified:true})
+                                    res.json({msg:"non matching password!", canSign:false,wrongPwd:true, verified:true})
                                  }
                            });      
                      })
@@ -489,7 +490,7 @@ app.post("/login", async(req,res,next) =>{
          else{
                
            
-            res.json({msg:"User does not exist!Try registering/checking spelling of name or email!"})
+            res.json({msg:"User does not exist!Try registering/checking spelling of name or email!", canSign:false, wrongCred:true})
          }
         
          

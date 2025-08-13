@@ -8,8 +8,9 @@
        <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-  
-    <form  class="columnForm" id="dataForm" >
+     <div class="absolute inset-0 -z-10 h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"></div>
+    <div class="centeredDiv" style="height: 100vh;">
+       <form  class="columnForm w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700" id="dataForm" >
         <h1 id="signedCheck"></h1>
         <div class="formEl">
           <h2 id="dataSent"></h2>
@@ -35,14 +36,18 @@
         </div>
         
          <div class="formEl">
-           <button id="submitBtn" type="submit" class="btn text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">SUBMIT</button>
+           <button id="submitBtn" style="margin:0"  type="submit" class="btn text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">SUBMIT</button>
          </div>
         
           
       
       </form>
+    </div>
+    
+       <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
       <script src="JS/handleRouting.js"></script>
-      <script type="module" src="JS/connectDB.js"></script>
+      <script src="JS/updateElem.js"></script>
+      <script type="module" src="JS/signUp.js"></script>
         
     
      
