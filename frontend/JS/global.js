@@ -1,5 +1,5 @@
 //locally localhot  production domain
 function exportGlobalVar(){
-    return {serverLoc: "https://organify.onrender.com/", frontendLoc:"https://organify.onrender.com/"}
+    return {serverLoc: "http://127.0.0.1:3000/", frontendLoc:"http://127.0.0.1:3000/"}
 }
 export default exportGlobalVar
