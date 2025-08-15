@@ -85,7 +85,7 @@ function deleteDoc(coll, docField, docVal){
    coll.deleteOne({[`${docField}`]:docVal})
 }
 function verifyReq(email, docGroupChats, docName,req ){
-      sendMail(email, "Verify email", `Hello ${req.session.name} please verify your email at ${BPORT}/verify/`, true)
+      sendMail(email, "Verify email", `Hello ${req.session.name} please verify your email at ${FPORT}/verify/`, true)
       app.get("/verify", (req,res)=>{
          myColl.findOne({email:email}).then((doc)=>{
                      if(tokenVer && doc.emailVerified){

@@ -9,7 +9,23 @@ const form= document.getElementById("dataForm");
 const headConf = document.getElementById("dataSent")
 const profInp = document.getElementById("profession")
 const signHead = document.getElementById("signedCheck")
-
+var showPwd = document.getElementById("showPwd");
+var pwdInp = document.getElementById("password")
+var confirmPwd = document.getElementById("ConfirmPwd")
+var pwdInps = document.getElementsByClassName("Pwd")
+showPwd.addEventListener("click", ()=>{
+    for(let i=0; i< pwdInps.length; i++){
+        if(pwdInps.item(i).type ==="password"){
+        pwdInps.item(i).type = "text"
+        }
+        else{
+            pwdInps.item(i).type="password"
+        }
+   
+    
+    }
+        
+})
 sessionStorage.setItem("username", "")
 sessionStorage.setItem("verified", false)
 window.formfetch = function formFetch(iPAddr){
@@ -28,6 +44,11 @@ window.formfetch = function formFetch(iPAddr){
             updateElement(userInp,$("#email"),'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'," " )
                 
         })
+        error = true
+    }
+    if(pwdInp.value != confirmPwd.value){
+       window.alert("Passwords must match!")
+        
         error = true
     }
     if(form.elements.namedItem("password").value.length < 8){

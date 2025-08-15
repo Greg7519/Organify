@@ -14,7 +14,15 @@ var respOk = false;
 sessionStorage.setItem("username", "")
 sessionStorage.setItem("verified", false)
 var pwdInp = document.getElementById("password")
-
+var showPwd = document.getElementById("showPwd");
+showPwd.addEventListener("click", ()=>{
+    if(pwdInp.type ==="password"){
+        pwdInp.type = "text"
+    }
+    else{
+        pwdInp.type="password"
+    }
+})
 window.formfetch = function formFetch(iPAddr){
     form.addEventListener("submit", async(e)=>{
     e.preventDefault() 
