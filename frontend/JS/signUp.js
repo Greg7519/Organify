@@ -36,12 +36,12 @@ window.formfetch = function formFetch(iPAddr){
     if(!regex.test(form.elements.namedItem("email").value)){
         var userInp = document.getElementById("email")
         userInp.value = ""
-        updateElement(userInp,$("#email"),'bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500',"Invalid email!" )
+        updateElement(userInp,$("#email"),'rounded-none rounded-e-lg bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500',"Invalid email!" )
                     // pwdInp.value = ""
                     // pwdInp.removeAttribute("class")
                   
         userInp.addEventListener('click', ()=>{
-            updateElement(userInp,$("#email"),'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'," " )
+            updateElement(userInp,$("#email"),'rounded-none rounded-e-lg bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'," " )
                 
         })
         error = true
@@ -54,12 +54,12 @@ window.formfetch = function formFetch(iPAddr){
     if(form.elements.namedItem("password").value.length < 8){
          var passInp = document.getElementById("password")
         passInp.value = ""
-        updateElement(passInp,$("#password"),'bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500',"Password must be at least 8 characters long!" )
+        updateElement(passInp,$("#password"),'rounded-none rounded-e-lg bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500',"Password must be at least 8 characters long!" )
                     // pwdInp.value = ""
                     // pwdInp.removeAttribute("class")
                   
         passInp.addEventListener('click', ()=>{
-            updateElement(passInp,$("#password"),'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'," " )
+            updateElement(passInp,$("#password"),'rounded-none rounded-e-lg bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'," " )
                 
         })
           error = true
@@ -86,12 +86,12 @@ window.formfetch = function formFetch(iPAddr){
             if(text.userExists){
                 var nameInp = document.getElementById("name")
                 nameInp.value = ""
-                updateElement(nameInp,$("#name"),'bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500',"User already exists!Sign in instead" )
+                updateElement(nameInp,$("#name"),'rounded-none rounded-e-lg bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500',"User already exists!Sign in instead" )
                             // pwdInp.value = ""
                             // pwdInp.removeAttribute("class")
                         
                 nameInp.addEventListener('click', ()=>{
-                    updateElement(userInp,$("#email"),'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'," " )
+                    updateElement(userInp,$("#name"),'rounded-none rounded-e-lg bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'," " )
                         
                 })
         error = true
