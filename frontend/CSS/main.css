@@ -1,6 +1,8 @@
 .columnForm{
     display: flex;
     flex:1;
+    margin-left: 3%;
+    margin-right: 3%;
     justify-content: center;
     align-items: center;
     flex-direction: column;
