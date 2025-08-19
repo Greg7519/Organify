@@ -26,8 +26,11 @@ await fetch(`${globalVariables.serverLoc}getUserInfo`,{method:'GET',
             return response.json()
         }).then(json=>{
             console.log(json)
-        
-            WelcHed.innerHTML = "Welcome " +  json.name
+            var innerP = document.createElement("span");
+            innerP.style.color = "#0073A6";
+            innerP.innerHTML = json.name
+            WelcHed.innerHTML = "Welcome " 
+            WelcHed.appendChild(innerP)
             
         })
 

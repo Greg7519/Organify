@@ -34,34 +34,53 @@ await fetch(`${globalVariables.serverLoc}getTasks`,{method:'GET',
                 document.body.appendChild(taskHeader)
             }
             else{
-                const taskHeader = document.createElement("h2")
-                taskHeader.innerHTML="Tasks: "
-                taskHeader.style.textAlign = "center"
+              
+               
+               
                 myTasks.forEach((element, ind) => {
                 
-                const GroupDiv = document.createElement("div")
+                var GroupDiv = document.createElement("div")
+                GroupDiv.classList.add("task")
                 const GroupText = document.createElement("div")
                 if(ind ==0){
-                   group.appendChild(taskHeader)
+                      var taskHeader = document.createElement("h2")
+                        taskHeader.innerHTML="Tasks: "
+                        taskHeader.style.textAlign ="center"
+                        group.appendChild(taskHeader)
+                        taskHeader.id = "TaskGroup"
+                        taskHeader = $("#TaskGroup");
+                        taskHeader.addClass("mb-6 text-lg font-bold text-emerald-600 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400")
+                   
                 }
                 const BtnCont = document.createElement("div")
-                GroupDiv.classList.add("group");
+              
                 GroupText.classList.add("groupText")
                 group.appendChild(GroupDiv);
-                const GroupHeader = document.createElement("h3")
+                var GroupHeader = document.createElement("h3")
+                GroupHeader.classList.add("taskTitle")
                 const pHeader = document.createElement("p")
-              
+                GroupDiv.style.width = "95%"
+                GroupDiv.style.marginLeft = "2.5%"
               
                 GroupHeader.innerHTML ="Task: " + element.title
                 pHeader.innerHTML = "Date due: " + element.dateDue
-                pHeader.style.color = "white";
-             
+                pHeader.classList.add("dateDue")
                 
                 GroupHeader.style.color="white"
+                GroupText.classList.add("p-6")
                 GroupText.appendChild(GroupHeader)
                 GroupText.appendChild(pHeader)
                 GroupDiv.append(GroupText)
-                GroupDiv.appendChild(BtnCont)
+                GroupDiv = $(".task")
+                
+                var pars = $(".dateDue");
+                pars.addClass(" mb-5 text-slate-600 leading-normal font-light")
+                GroupHeader = $(".taskTitle")
+                GroupHeader.addClass("mb-5 rounded-full bg-orange-600 py-0.5 px-2.5 border border-transparent text-xs text-white transition-all shadow-sm w-40 text-center")
+                
+                // groupHeader.innerHTML = element.groupName
+                GroupDiv.addClass("relative flex flex-col md:flex-row w-full my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96")
+                // GroupDivOg.appendChild(BtnCont)
                 // groupHeader.innerHTML = element.groupName
                 // pHed.innerHTML = "Administrator: " + element.admin
             });

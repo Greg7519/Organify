@@ -8,10 +8,12 @@
     <link rel="stylesheet" href="CSS/main.css">
      <script src="https://cdn.tailwindcss.com"></script>
     
+        
+    
 
 </head>
 <body>
-    <div class="navbarTop" >
+    <div class="navbarTop  ">
             <a class="active" href="main.html">
                 Main
             </a>
@@ -19,13 +21,56 @@
     </div>
     <h1 id="errorHeader"></h1>
     
-   
+      <div style="margin-bottom:3%"></div>
     <div class="centerDiv">
-        <h3 id="welcomeHeader" class="text=2xl font-extrabold text-gray-900 dark:text-white sm:text-5xl"> </h1>
+        <h2 id="welcomeHeader"  class="text-4xl font-extrabold dark:text-white" style="color: white;"></h2>
         <h2 id="groupsNotFound"></h2>
         <h2 id="tasksNotFound"></h2>
     </div>
+    <div style="margin-bottom:3%"></div>
+    <div class="absolute inset-0 -z-10 h-full w-full bg-gradient-to-br from-[#f59e0b] via-[#ea580c] to-[#b91c1c]"></div>
          <div class="groupCont" id="groupCont"></div>
+<!-- <div class="relative flex flex-col md:flex-row w-full my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96">
+  <div class="p-6">
+    <div class="mb-4 rounded-full bg-teal-600 py-0.5 px-2.5 border border-transparent text-xs text-white transition-all shadow-sm w-20 text-center">Groups</div>
+    <h4 class="mb-2 text-slate-800 text-xl font-semibold">
+      Group:BFFS
+    </h4>
+    <p class="mb-8 text-slate-600 leading-normal font-light">
+      Users:Greg, admins:Nick
+    </p>
+    <div>
+      <a href="#" class="text-slate-800 font-semibold text-sm hover:underline flex items-center">
+        Learn More
+        <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</div> 
+ <div class="relative flex flex-col md:flex-row w-full my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96">
+  <div class="p-6">
+    <div class="mb-4 rounded-full bg-teal-600 py-0.5 px-2.5 border border-transparent text-xs text-white transition-all shadow-sm w-20 text-center">Groups</div>
+    <h4 class="mb-2 text-slate-800 text-xl font-semibold">
+      Group:BFFS
+    </h4>
+    <p class="mb-2 text-slate-600 leading-normal font-light">
+      Users:Greg
+    </p>
+     <p class="mb-4 text-slate-600 leading-normal font-light">
+        Admin:Nick
+    </p>
+    <div>
+      <a href="#" class="text-slate-800 font-semibold text-sm hover:underline flex items-center">
+        View group
+        <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>  -->
         <!--<div class="flow-root">
         <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
             <li class="py-3 sm:py-4">
@@ -52,7 +97,7 @@
 
    
   
-  
+     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script type="module" src="JS/protected.js"></script>
        <script type="module" src="JS/displayJSON.js"></script>
       <script type="module"  src="JS/mainPage.js"></script>
