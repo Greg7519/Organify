@@ -35,7 +35,7 @@ await fetch(`${globalVariables.serverLoc}getTasks`,{method:'GET',
             }
             else{
               
-               
+              
                
                 myTasks.forEach((element, ind) => {
                 
@@ -80,6 +80,9 @@ await fetch(`${globalVariables.serverLoc}getTasks`,{method:'GET',
                 
                 // groupHeader.innerHTML = element.groupName
                 GroupDiv.addClass("relative flex flex-col md:flex-row w-full my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96")
+                if(ind == myTasks.length-1){
+                    sessionStorage.setItem("loaded", true)
+                }
                 // GroupDivOg.appendChild(BtnCont)
                 // groupHeader.innerHTML = element.groupName
                 // pHed.innerHTML = "Administrator: " + element.admin

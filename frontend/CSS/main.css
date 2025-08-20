@@ -79,6 +79,9 @@ label{
 
 
 }
+#afterLoad{
+    display: none;
+}
 .navbarTop a{
     z-index: 2;
     float: left;
