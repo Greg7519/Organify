@@ -16,19 +16,20 @@
             <a href="newGroup.html" style="float: right;">Create new group</a>
      </div>
     <div style="margin-top: 4%;"></div>
+      <div class="absolute inset-0 -z-10 h-full w-full bg-gradient-to-br from-[#f59e0b] via-[#ea580c] to-[#b91c1c]"></div>
    
            <h3 id="infoHeader" style="text-align: center;"></h3>
             <form id="form">
-                <label for="fname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                <label for="fname" class="block mb-2 text-sm font-medium text-white dark:text-white">
                     User name:
                 </label>
                 <input id="fname" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" placeholder="Name:" name="user" readonly required>
-                <label for="fname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" id="Date">
+                <label for="fname" class="block mb-2 text-sm font-medium text-white dark:text-white" id="Date">
                    Date task is due(DD/MM/YYYY format):
                 </label>
                 <input id="Date"  type="text" name="Date" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  placeholder="Date:" required >
-                <label for="subject"  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Task information:</label>
-                <textarea class="block  p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="subject" name="task" type="text"placeholder= "Enter task information here:"style="min-height: 200px;"></textarea>
+                <label for="subject"  class="block mb-2 text-sm font-medium text-white dark:text-white">Task information:</label>
+                <textarea class="block mb-2  p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="subject" name="task" type="text"placeholder= "Enter task information here:"style="min-height: 200px;"></textarea>
                 <button class="submitBtn text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-2" id="submitBtn" type="submit">
                      <span> Submit</span>
                 </button>

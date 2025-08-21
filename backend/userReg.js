@@ -270,8 +270,9 @@ app.get("/getUserGroups", requireAuth, async(req,res)=>{
             
             
             var myId = mongodb.ObjectId.createFromHexString(myEl)
-         
-            groupColl.findOne({"_id": myId}).then(async(doc) =>{
+           
+             groupColl.findOne({"_id": myId}).then(async(doc) =>{
+               try{
                   var obj = {name:doc.groupName, admin:doc.admin, users:doc.users}
                 
                   groupsInfo.users.push(obj)
@@ -287,15 +288,23 @@ app.get("/getUserGroups", requireAuth, async(req,res)=>{
                         deleteDoc(groupColl, "_id", doc._id )
                      }
                        if(groupsInfo.users.length== userDoc.groupChats.length){
+                        console.log(groupsInfo)
                         res.json( JSON.parse(JSON.stringify(groupsInfo)))
                         }
-                    
-                       
+               }   
                       
-                     
+                catch{
+                     groupArr =userDoc.groupChats.filter(item=>item !== myEl)
+                     myColl.updateOne({name:
+                                    userDoc.name
+                                 }, {$set:{groupChats:groupArr}})
+                  }  
                     
             })
-            console.log(groupsInfo)
+           
+          
+           
+            
             
          
                
