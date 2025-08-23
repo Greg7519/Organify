@@ -26,10 +26,12 @@ await fetch(`${globalVariables.serverLoc}getTasks`,{method:'GET',
         }).then(json=>{
             
             
-            var myTasks = loadJSON(json, "name", "title","dateDue", "tasks")
-            console.log(myTasks)
            
-             if(myTasks.length==0){
+            try{
+                 var myTasks = loadJSON(json, "name", "title","dateDue", "tasks")
+                 console.log(myTasks)
+                  if(myTasks.length==0){
+                sessionStorage.setItem("loadedTasks", true)
                 taskHeader.innerHTML="You dont have any tasks available!"
                 document.body.appendChild(taskHeader)
             }
@@ -81,14 +83,19 @@ await fetch(`${globalVariables.serverLoc}getTasks`,{method:'GET',
                 // groupHeader.innerHTML = element.groupName
                 GroupDiv.addClass("relative flex flex-col md:flex-row w-full my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96")
                 if(ind == myTasks.length-1){
-                    sessionStorage.setItem("loaded", true)
+                    sessionStorage.setItem("loadedTasks", true)
                 }
                 // GroupDivOg.appendChild(BtnCont)
                 // groupHeader.innerHTML = element.groupName
                 // pHed.innerHTML = "Administrator: " + element.admin
             });
             }
-           
+
+            }
+            catch{
+                sessionStorage.setItem("loadedTasks", true)
+            }
+                       
            
             //   var clone = document.body.cloneNode(".group")
             //     document.body.appendChild(clone)
