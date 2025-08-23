@@ -229,12 +229,13 @@ app.get("/getTasks", requireAuth, async(req, res)=>{
                   else{
                         myTasks.tasks.push(obj)
                      console.log(myTasks)
-                    
-                  }
-                  if(idx==array.length -1){
+                     if(myTasks.tasks.length==array.length){
                         
                         res.json( JSON.parse(JSON.stringify(myTasks)))
                   }
+                    
+                  }
+                  
          
                
             })
