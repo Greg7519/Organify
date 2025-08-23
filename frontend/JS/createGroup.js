@@ -22,7 +22,7 @@ form.addEventListener("submit", async(e) =>{
             console.log(resp.status)
             
             if(resp.redirected){
-                header.innerHTML = "Group created"
+                window.alert("Group created!")
                
                 setTimeout(()=>{
                     window.location.href = resp.url

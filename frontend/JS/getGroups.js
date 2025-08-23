@@ -76,15 +76,21 @@ await fetch(`${globalVariables.serverLoc}getUserGroups`,{method:'GET',
               
                 GroupHeader.innerHTML = element.name
                 pHeader.classList.add("par");
-                pHeader.innerHTML = "Administrator: " + element.admin + " Users: "
-                
+                pHeader.innerHTML = "Administrator: " + element.admin 
+                const userHeader  = document.createElement("p");
+                userHeader.classList.add("usersTxt");
+                userHeader.innerHTML = "Users:"
                 if(element.users.length==0){
-                     pHeader.innerHTML += "None"
+                     userHeader.innerHTML += "None"
                 }
                 else{
                     element.users.forEach((val, ind, arr)=>{
-                    
-                        pHeader.innerHTML += val;
+                        if(ind== arr.length-1){
+                              userHeader.innerHTML += val
+                        }
+                        else{
+                            userHeader.innerHTML += val + ",";
+                        }
                         usernames.push(val)
                 })
                 }
@@ -97,11 +103,14 @@ await fetch(`${globalVariables.serverLoc}getUserGroups`,{method:'GET',
                 
                 GroupText.appendChild(GroupHeader)
                 GroupText.appendChild(pHeader)
+                GroupText.appendChild(userHeader)
                 GroupDiv.append(GroupText)
                 GroupText.appendChild(BtnCont)
                 var groups= $(".groups") 
                 var pars = $(".par");
-                pars.addClass(" mb-5 text-slate-600 leading-normal font-light")
+                var usersTxt = $(".usersTxt")
+                pars.addClass(" mb-2 text-slate-600 leading-normal font-light")
+                usersTxt.addClass(" mb-5 text-slate-600 leading-normal font-light")
                 groups.addClass("relative flex flex-col md:flex-row w-full my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96");
                 GroupText.classList.add("groupText")
                 GroupHeader.style.width = "fit-content"
