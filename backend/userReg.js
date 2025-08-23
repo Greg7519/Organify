@@ -250,7 +250,7 @@ app.get("/getTasks", requireAuth, async(req, res)=>{
 app.post("/createGroup", requireAuth,async(req,res)=>{
    console.log("accesed service")
    groupColl.insertOne({ groupName:req.body.name,admin: req.session.name,users: []}).then((doc)=>{
-      console.log(req.session.name)
+      console.log(req.body.name)
       updateDoc(req.session.name, req.body.name)
       req.session.groupChat = req.body.name;
       res.redirect(`${FPORT}/addUsers.html`)
@@ -264,7 +264,8 @@ app.get("/getUserGroups", requireAuth, async(req,res)=>{
    var groupsInfo ={"users":[]}
    var i =0;
    myColl.findOne({name:req.session.name}).then(async(userDoc)=>{
-      try{
+      
+         
           for await(var el of userDoc.groupChats) {
             var myEl = await el.toString()
             
@@ -274,11 +275,17 @@ app.get("/getUserGroups", requireAuth, async(req,res)=>{
              groupColl.findOne({"_id": myId}).then(async(doc) =>{
                try{
                   var obj = {name:doc.groupName, admin:doc.admin, users:doc.users}
-                
+               
+                  if(doc.groupName== null){
+                       var groupArr = userDoc.groupChats
+                        groupArr = groupArr.filter(item => item !== myEl)
+                        myColl.updateOne({name:
+                           userDoc.name
+                        }, {$set:{groupChats:groupArr}})
+                        deleteDoc(groupColl, "_id", doc._id )
+                  }
                   groupsInfo.users.push(obj)
-                  console.log(groupsInfo.users)
-                  
-                  console.log(myEl,i)
+                 
                      if(doc.users.length ==0){
                         var groupArr = userDoc.groupChats
                         groupArr = groupArr.filter(item => item !== myEl)
@@ -294,11 +301,16 @@ app.get("/getUserGroups", requireAuth, async(req,res)=>{
                }   
                       
                 catch{
-                     groupArr =userDoc.groupChats.filter(item=>item !== myEl)
-                     myColl.updateOne({name:
-                                    userDoc.name
-                                 }, {$set:{groupChats:groupArr}})
+                  
+                   console.log("error")
+                  
+                        var groupArr = userDoc.groupChats.filter(item => item != el)
+                        myColl.updateOne({name:
+                           userDoc.name
+                        }, {$set:{groupChats:groupArr}})
+                   
                   }  
+                  
                     
             })
            
@@ -313,10 +325,8 @@ app.get("/getUserGroups", requireAuth, async(req,res)=>{
           
           
       
-      }
-      catch{
-         res.json({msg:"No groups"})
-      }
+      
+      
      
     
      
@@ -330,20 +340,30 @@ app.post("/addUsers", requireAuth,async(req,res)=>{
       groupName:req.session.groupChat
    }).then(async(doc)=>{
       var user = await myColl.findOne({name:req.body.user})
-      
+       
       if(user){
            req.session.otherusers.push(user.name)
            
            try{
+                  console.log(doc)
                   var users = doc.users
+                  console.log(users)
                   if(!users.includes(req.body.user)){
                       groupColl.updateOne({groupName: req.session.groupChat},{$push:{users:user.name}})
                       users.push(user.name)
+                      console.log(users)
+                       res.sendStatus(200)
                   }
+                  else{
+                     console.log
+                     res.sendStatus(404)
+                  }
+
                 
-                  res.sendStatus(200)
+                 
             }
             catch{
+              
                groupColl.updateOne({groupName:req.session.groupChat},{$set:{users:[user.name]}})
                res.sendStatus(200)
             }

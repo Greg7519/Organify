@@ -6,8 +6,8 @@ const addBtn = document.getElementById("searchIcon");
 form.addEventListener("submit", async(e) =>{
           e.preventDefault()
           const dataForm = new FormData(form);
-          if(dataForm.get("default-search") == null){
-
+          if(dataForm.get("user") == null){
+            window.alert("Enter a name!")
           }
           else{
 
@@ -29,13 +29,13 @@ form.addEventListener("submit", async(e) =>{
                 window.location.href = resp.url
             }
             if(resp.status == 404){
-                header.innerHTML = 'Not found!'
+                window.alert('Not found!')
             }
             else{
-                header.innerHTML =  dataForm.get("user") + " added"
+                 window.alert(dataForm.get("user") + " added")
+                
             }
-            
-            console.log(header.value)
+           
            
             // must return here for later!
             return resp.json()
