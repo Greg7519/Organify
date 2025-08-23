@@ -109,7 +109,7 @@ await fetch(`${globalVariables.serverLoc}getUserGroups`,{method:'GET',
                 var groups= $(".groups") 
                 var pars = $(".par");
                 var usersTxt = $(".usersTxt")
-                pars.addClass(" mb-2 text-slate-600 leading-normal font-light")
+                pars.addClass(" mb-1 text-slate-600 leading-normal font-light")
                 usersTxt.addClass(" mb-5 text-slate-600 leading-normal font-light")
                 groups.addClass("relative flex flex-col md:flex-row w-full my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96");
                 GroupText.classList.add("groupText")
