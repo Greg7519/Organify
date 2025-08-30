@@ -49,6 +49,9 @@ window.formfetch = function formFetch(iPAddr){
             if(response.ok){
                  respOk = true
             }
+             if(response.status==429){
+                window.alert("Too many requests please try again in 15 minutes")
+            }
             if(response.redirected){
                 window.location.href = response.url;
             }

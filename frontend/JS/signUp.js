@@ -80,6 +80,9 @@ window.formfetch = function formFetch(iPAddr){
             },
         }).then((response)=>{
             console.log(response.status)
+            if(response.status==429){
+                window.alert("Too many requests please try again in 15 minutes")
+            }
             // must return here for later!
             return response.json()
         }).then((text)=>{
@@ -94,7 +97,7 @@ window.formfetch = function formFetch(iPAddr){
                     updateElement(userInp,$("#name"),'rounded-none rounded-e-lg bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'," " )
                         
                 })
-        error = true
+                error = true
             }
             else{
                 sessionStorage.setItem("username", text.username)

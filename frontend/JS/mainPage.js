@@ -23,6 +23,9 @@ await fetch(`${globalVariables.serverLoc}getUserInfo`,{method:'GET',
                 },1000)
                 
             }
+            if(response.status==429){
+                window.alert("Too many requests please try again in 15 minutes")
+            }
             return response.json()
         }).then(json=>{
             console.log(json)

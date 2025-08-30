@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node userReg.js",
     "dev": "nodemon userReg.js ",
-    "build":"npm install "
+    "build": "npm install "
   },
   "author": "",
   "license": "ISC",
@@ -20,17 +20,17 @@
     "dotenv": "^16.5.0",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
+    "express-rate-limit": "^8.0.1",
     "express-session": "^1.18.1",
     "jsonwebtoken": "^9.0.2",
-     "mongodb": "^6.18.0",
+    "mongodb": "^6.18.0",
     "mongoose": "^8.15.0",
     "node-html-parser": "^7.0.1",
     "nodemailer": "^7.0.5",
-
     "nodemailer-smtp-transport": "^2.7.4",
     "nodemon": "^3.1.10"
   },
-  "engines":{
+  "engines": {
     "node": ">=22.12.0 <22.14.0"
   }
 }

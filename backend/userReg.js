@@ -1,9 +1,11 @@
 const mongodb = require("mongodb");
 const jwt  = require("jsonwebtoken");
 const dotenv = require("dotenv");
+const rateLimit = require("express-rate-limit")
 //import module, then start with new
 var userM = require("./userModel.js");
 var TaskM = require("./taskModel.js")
+
 const path = require("path")
 const {sendMail} = require('./emailVerify.js')
 const express = require("express");
@@ -15,6 +17,11 @@ const dat_fns =  require("date-fns")
 var session = require('express-session')
 var https = require("https")
 const fs = require("fs");
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max:5, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+  message: "Too many requests from this IP, please try again after 15 minutes",
+});
 dotenv.config()
 // var optionsHttps = {
 //   key: fs.readFileSync('private-key.pem'),
@@ -186,6 +193,8 @@ async function updateTask(taskID, username){
                }
    })
 }
+
+app.use(limiter);
 app.post("/addTask", requireAuth, async(req,res)=>{
    console.log(req.body)
    const task = new TaskM({username: req.body.user, dateDue:req.body.Date, taskInfo:req.body.task})
