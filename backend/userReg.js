@@ -194,7 +194,7 @@ async function updateTask(taskID, username){
    })
 }
 
-app.use(limiter);
+// app.use(limiter);
 app.post("/addTask", requireAuth, async(req,res)=>{
    console.log(req.body)
    const task = new TaskM({username: req.body.user, dateDue:req.body.Date, taskInfo:req.body.task})
