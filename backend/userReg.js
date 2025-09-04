@@ -38,6 +38,7 @@ const taskColl = myDb.collection("tasks");
 const groupColl = myDb.collection("groups")
 
 const { error, group } = require("console");
+const e = require("express");
 const parse = require('node-html-parser').parse;
 
 // async function main(){
@@ -60,13 +61,14 @@ app.use(function (req, res, next) {
     next();
 });
 app.use(encoder)
+
 app.use(cookieParser())
 var myUser;
 var userName;
 var myEmail;
 var tokenVer = false;
 app.use(session({
-   secret: 'my-secret-key',
+   secret: process.env.SESSION_KEY,
    resave:false,
    saveUninitialized:true,
    cookie:{secure:false}
@@ -195,6 +197,55 @@ async function updateTask(taskID, username){
 }
 
 // app.use(limiter);
+// 
+app.get("/resetPwd/:id/:token", async(req,res) =>{
+   console.log("logged in", req.params.email)
+   console.log(req.params.id)
+   res.sendFile("resetPwd.html",{root:"../frontend"})
+   
+   }
+  
+)
+app.put("/resetPwd/:id/:token", async(req,res) =>{
+   var id = req.params.id.toString()
+   jwt.verify(req.params.token, process.env.JWT_KEY, function(err, decoded){
+      if(err){
+         res.json({msg:"Token is invalid!Try getting a new email"})
+
+      }
+      else{
+          bcrypt.hash(req.body.password,10, (err, hash)=>{
+         if(err){
+            res.json({msg:"Failed to update!Try again later"})
+         }
+         else{
+
+             pwd= hash;
+              myColl.updateOne({"_id": mongodb.ObjectId.createFromHexString(id)},{"$set": {password:hash}})
+                res.json({msg:"Password updated successfully you can now login again!"})
+         }
+
+           
+   })
+
+      }
+   })
+  
+   console.log("updated")
+  
+   
+})
+app.post("/forgotPwd", async(req,res) =>{
+   
+   var user = await myColl.findOne({email:req.body.email})
+   if(user){
+      sendMail(user.email, "Reset password ", `You can reset your password at ${process.env.FPORT}/resetPwd/${user._id}/`,true, )
+      res.json({exists:true})
+   }
+   else{
+      res.json({exists:false})
+   }
+})
 app.post("/addTask", requireAuth, async(req,res)=>{
    console.log(req.body)
    const task = new TaskM({username: req.body.user, dateDue:req.body.Date, taskInfo:req.body.task})

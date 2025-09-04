@@ -18,7 +18,8 @@ function sendMail(receiptEmail, subject, text, hasToken=false){
         token = jwt.sign({
         data:"Token Data"
 
-        }, 'ourSecretKey')
+        }, process.env.JWT_KEY,{expiresIn:'10m'})
+        
     }
     else{
         token=""
