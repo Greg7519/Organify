@@ -2,7 +2,7 @@ const dotenv = require("dotenv");
 dotenv.config()
 const nodemailer = require('nodemailer');
 const jwt  = require("jsonwebtoken");
-function sendMail(receiptEmail, subject, text, hasToken=false){
+function sendMail(receiptEmail, subject, text, hasToken=false, data=""){
     const transporter = nodemailer.createTransport({
    
     service:"gmail",
@@ -16,7 +16,7 @@ function sendMail(receiptEmail, subject, text, hasToken=false){
     var token;
     if(hasToken){
         token = jwt.sign({
-        data:"Token Data"
+        data:data
 
         }, process.env.JWT_KEY,{expiresIn:'10m'})
         

@@ -198,7 +198,7 @@ async function updateTask(taskID, username){
 
 // app.use(limiter);
 // 
-app.get("/resetPwd/:id/:token", async(req,res) =>{
+app.get("/resetPwd/:token", async(req,res) =>{
    console.log("logged in", req.params.email)
    console.log(req.params.id)
    res.sendFile("resetPwd.html",{root:"../frontend"})
@@ -206,13 +206,15 @@ app.get("/resetPwd/:id/:token", async(req,res) =>{
    }
   
 )
-app.put("/resetPwd/:id/:token", async(req,res) =>{
-   var id = req.params.id.toString()
+app.put("/resetPwd/:token", async(req,res) =>{
+   
    jwt.verify(req.params.token, process.env.JWT_KEY, function(err, decoded){
       if(err){
          res.json({msg:"Token is invalid!Try getting a new email"})
 
       }
+     
+   
       else{
           bcrypt.hash(req.body.password,10, (err, hash)=>{
          if(err){
@@ -221,16 +223,20 @@ app.put("/resetPwd/:id/:token", async(req,res) =>{
          else{
 
              pwd= hash;
-              myColl.updateOne({"_id": mongodb.ObjectId.createFromHexString(id)},{"$set": {password:hash}})
+              myColl.updateOne({"_id": mongodb.ObjectId.createFromHexString(decoded.data)},{"$set": {password:hash}})
+              
                 res.json({msg:"Password updated successfully you can now login again!"})
          }
-
+      
            
-   })
-
+         })
       }
    })
-  
+
+
+   
+   
+   
    console.log("updated")
   
    
@@ -239,7 +245,7 @@ app.post("/forgotPwd", async(req,res) =>{
    
    var user = await myColl.findOne({email:req.body.email})
    if(user){
-      sendMail(user.email, "Reset password ", `You can reset your password at ${process.env.FPORT}/resetPwd/${user._id}/`,true, )
+      sendMail(user.email, "Reset password ", `You can reset your password at ${process.env.FPORT}/resetPwd/`,true,user._id )
       res.json({exists:true})
    }
    else{
