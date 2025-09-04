@@ -332,8 +332,8 @@ app.get("/getUserGroups", requireAuth, async(req,res)=>{
    var i =0;
    myColl.findOne({name:req.session.name}).then(async(userDoc)=>{
       
-         
-          for await(var el of userDoc.groupChats) {
+         try{
+            for await(var el of userDoc.groupChats) {
             var myEl = await el.toString()
             
             
@@ -388,6 +388,13 @@ app.get("/getUserGroups", requireAuth, async(req,res)=>{
          
                
          }
+         }
+         catch{
+            console.log("No groups yet")
+            res.json({msg:"No groups yet"})
+         }
+          
+
        
           
           

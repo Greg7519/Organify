@@ -27,6 +27,11 @@ await fetch(`${globalVariables.serverLoc}getUserGroups`,{method:'GET',
             var myGroups = loadJSON(json, "name", "admin","users", "users")
             console.log(myGroups)
             var usernames = [];
+            if(myGroups.length==0){
+                
+                sessionStorage.setItem("loadedGroups")=true
+                console.log( sessionStorage.getItem("loadedGroups"))
+            }
             var groupsHead = document.createElement("h2");
             group.appendChild(groupsHead)
             groupsHead.id = "groupHead"
