@@ -1,3 +1,6 @@
+
+<img width="1917" height="677" alt="Στιγμιότυπο οθόνης 2025-09-04 183500" src="https://github.com/user-attachments/assets/c17f64a6-a8b3-4939-99c7-c252041f9a9c" />
+
 Instructions:Clone this repository
 
 In an .env file add in the backend directory the following enviromental variables:
