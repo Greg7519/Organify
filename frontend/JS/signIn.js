@@ -7,16 +7,26 @@ const form= document.getElementById("dataForm");
 const headConf = document.getElementById("dataSent")
 const profInp = document.getElementById("profession")
 const signHead = document.getElementById("signedCheck")
+var showPwd = document.getElementById("showPwd");
+var pwdInp = document.getElementById("password")
 
 const globalVariables = globalVars();
 console.log(globalVariables.serverLoc)
 var respOk = false;
 sessionStorage.setItem("username", "")
 sessionStorage.setItem("verified", false)
-
+showPwd.addEventListener( "click", ()=>{
+        if(pwdInp.type=="password"){
+            pwdInp.type="text"
+        }
+        else{
+            pwdInp.type="password"
+        }
+    })
 window.formfetch = function formFetch(iPAddr){
     form.addEventListener("submit", async(e)=>{
     e.preventDefault() 
+    
     // must have names on labels
     const dataForm = new FormData(form);
     const data = new URLSearchParams(dataForm).toString()

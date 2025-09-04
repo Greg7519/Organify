@@ -113,7 +113,7 @@ function verifyReq(email, docGroupChats, docName,req ){
       app.get("/verify/:token", (req,res)=>{
                   const {token} = req.params;
                   console.log(token)
-                   jwt.verify(token,'ourSecretKey', function(err,decoded){
+                   jwt.verify(token,process.env.JWT_KEY, function(err,decoded){
                    
                      if(err){
                         console.log(err)
