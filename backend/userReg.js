@@ -213,30 +213,26 @@ app.put("/resetPwd/:token", async(req,res) =>{
          res.json({msg:"Token is invalid!Try getting a new email"})
 
       }
-     
+      console.log(decoded)
    
-      else{
-          bcrypt.hash(req.body.password,10, (err, hash)=>{
-         if(err){
-            res.json({msg:"Failed to update!Try again later"})
-         }
-         else{
+      // else{
+      //     bcrypt.hash(req.body.password,10, (err, hash)=>{
+      //    if(err){
+      //       res.json({msg:"Failed to update!Try again later"})
+      //    }
+      //    else{
 
-             pwd= hash;
-              myColl.updateOne({"_id": mongodb.ObjectId.createFromHexString(decoded.data)},{"$set": {password:hash}})
-              
-                res.json({msg:"Password updated successfully you can now login again!"})
-         }
-      
+      //        pwd= hash;
+      //         myColl.updateOne({"_id": mongodb.ObjectId.createFromHexString(id)},{"$set": {password:hash}})
+      //           res.json({msg:"Password updated successfully you can now login again!"})
+      //    }
+
            
-         })
-      }
    })
 
-
+      
    
-   
-   
+  
    console.log("updated")
   
    
@@ -245,7 +241,7 @@ app.post("/forgotPwd", async(req,res) =>{
    
    var user = await myColl.findOne({email:req.body.email})
    if(user){
-      sendMail(user.email, "Reset password ", `You can reset your password at ${process.env.FPORT}/resetPwd/`,true,user._id )
+      sendMail(user.email, "Reset password ", `You can reset your password at ${process.env.FPORT}/resetPwd/`,true, )
       res.json({exists:true})
    }
    else{
@@ -332,8 +328,8 @@ app.get("/getUserGroups", requireAuth, async(req,res)=>{
    var i =0;
    myColl.findOne({name:req.session.name}).then(async(userDoc)=>{
       
-         try{
-            for await(var el of userDoc.groupChats) {
+         
+          for await(var el of userDoc.groupChats) {
             var myEl = await el.toString()
             
             
@@ -388,13 +384,6 @@ app.get("/getUserGroups", requireAuth, async(req,res)=>{
          
                
          }
-         }
-         catch{
-            console.log("No groups yet")
-            res.json({msg:"No groups yet"})
-         }
-          
-
        
           
           
