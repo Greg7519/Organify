@@ -2,7 +2,7 @@
 <img width="1917" height="677" alt="Στιγμιότυπο οθόνης 2025-09-04 183500" src="https://github.com/user-attachments/assets/c17f64a6-a8b3-4939-99c7-c252041f9a9c" />
 
 Instructions:Clone this repository
-
+NOTE: Password reset doesnt work in render due to free tier limitations(no emails can be sent) but you can try on localhost
 In an .env file add in the backend directory the following enviromental variables:
 
 FPORT to 3000
