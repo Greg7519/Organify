@@ -78,13 +78,20 @@ app.use(session({
 //   cert: fs.readFileSync('keys/cert.pem')
 // };
 const requireAuth  = (req, res, next) =>{
+   console.log(req.session.docId)
    if(req.session.docId){
       console.log("in service..")
       next();
    }else{
       console.log(req.sessionID)
       console.log("not logged in!")
-      res.redirect(`${FPORT}/signin.html`)
+      if(process.env.MOBILE){
+         return res.json({redirect:true})
+      }
+      else{
+         res.redirect(`${FPORT}/signin.html`)
+      }
+  
 
      
    }
@@ -548,7 +555,7 @@ app.post("/login", async(req,res,next) =>{
                                     req.session.groupChats = doc.groupChats
                                     req.session.cookie.expires = false
                                     req.session.name = doc.name;
-                                    console.log(req.sessionID)
+                                    console.log(req.session.docId +" %nas")
                                     
                                   
                   
@@ -559,12 +566,18 @@ app.post("/login", async(req,res,next) =>{
                                     res.cookie("sessionID", req.sessionID ,{
                                       
                                        httpOnly:true,
-                                       secure:true,
+                                       secure:false,
                                        sameSite:"none",
                                        
                                        
                                     })
-                                    res.redirect(`${FPORT}/main.html`)
+                                    if(process.env.MOBILE){
+                                       res.json({canSign:true})
+                                    }
+                                    else{
+                                       res.redirect(`${FPORT}/main.html`)
+                                    }
+                               
                                     // res.json({msg:"passwords match!Signing u in!", canSign:true, name: doc.name, verified:true,sessionId:doc._id})
                                     // next();
                                  }
