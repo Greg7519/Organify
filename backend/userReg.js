@@ -1,6 +1,7 @@
 const mongodb = require("mongodb");
 const jwt  = require("jsonwebtoken");
 const dotenv = require("dotenv");
+const serverless = require("serverless-http")
 const rateLimit = require("express-rate-limit")
 //import module, then start with new
 var userM = require("./userModel.js");
@@ -50,7 +51,7 @@ console.log(process.env.FPORT)
 //be careful of sending data
 dotenv.config()
 app.use(express.static(path.join(__dirname, "../frontend")))
-app.get("/", (req, res)=>{
+app.get("/.netlify/backend/userReg", (req, res)=>{
    res.sendFile(path.join(__dirname, "../frontend","signin.html"))
 })
 app.use(cors({origin:FPORT, credentials:true}))
@@ -626,4 +627,4 @@ app.post("/login", async(req,res,next) =>{
 
 
 app.listen(3000)
-module.exports = app;
+export const handler = serverless(app);
