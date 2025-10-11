@@ -1,4 +1,4 @@
-[functions]
+[build]
   external_node_modules = ["express"]
   functions="functions"
   node_bundler = "esbuild"
