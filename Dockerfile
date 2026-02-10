@@ -4,6 +4,6 @@ WORKDIR ./
 COPY ./backend/package*.json ./
 RUN npm install
 COPY . .
-ENV FPORT=3000 MONGO_URI="mongodb+srv://gregangeloppulos:gaming4life@cluster0.pkp1lft.mongodb.net/test?retryWrites=true&w=majority" FPORT_2="http://127.0.0.1:3000" EMAIL_SENDER="serverresponse120@gmail.com"EMAIL_PASS="jxon ehxt xfxc cnto"SESSION_KEY="sessionKeyR"JWT_KEY="randomJWtkey"
+ENV FPORT 3000
 EXPOSE 3000
 CMD ["npm", "run", "dev"]
