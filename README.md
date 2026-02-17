@@ -12,5 +12,5 @@ EMAIL_PASS: nodemailer pass credential<br/>
 if you deploy to render, i recommend setting PORT env to 3000 for letting production environment knowing which port to listen, since backend listens to port 3000<br/>
 in addUsers.html change href to your local/production port<br/>
 
-Technologies used: Html css(tailwind css) and javascript(both frontend and backend(node js). Database layer implemented through mongo DB<br/>
+Technologies used: Html css(tailwind css) and javascript(both frontend and backend(node js).<br/> Database layer implemented through mongo DB<br/>
 Deployment in custom IIS server, deployed with a custom TLS certificate and custom domain using reverse proxy
