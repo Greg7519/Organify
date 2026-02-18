@@ -27,6 +27,7 @@ dotenv.config()
 //   key: fs.readFileSync('private-key.pem'),
 //   cert: fs.readFileSync('test/fixtures/keys/agent2-cert.cert')
 // };
+console.log("My uri:", "testlatest2")
 const MONGO_URI = process.env.MONGO_URI;
 const FPORT = process.env.FPORT;
 
@@ -278,16 +279,17 @@ app.get("/getTasks", requireAuth, async(req, res)=>{
          userDoc.tasks.forEach((element,idx,array) => {
             var myEl = element.toString()
          
-         
-            taskColl.findOne({"_id":mongodb.ObjectId.createFromHexString(myEl)}).then((doc) =>{
+            try{
+                taskColl.findOne({"_id":mongodb.ObjectId.createFromHexString(myEl)}).then((doc) =>{
+                 
                   var obj = {name:doc.username, title: doc.taskInfo, dateDue:doc.dateDue}
                   var reversedDate = doc.dateDue.split("/").reverse().join("-");
-                  console.log(new Date(reversedDate), currDate)
+                 
                   if(new Date(reversedDate) < currDate){
                      taskColl.deleteOne({"_id":doc._id}).then(()=>{
                         var tasksArr = userDoc.tasks
                        tasksArr = tasksArr.filter(item => item !== element)
-                       console.log(tasksArr)
+                       
                         myColl.updateOne({name:
                            userDoc.name
                         }, {$set:{tasks:tasksArr}})
@@ -297,7 +299,7 @@ app.get("/getTasks", requireAuth, async(req, res)=>{
                   }
                   else{
                         myTasks.tasks.push(obj)
-                     console.log(myTasks)
+                     
                      if(myTasks.tasks.length==array.length){
                         
                         res.json( JSON.parse(JSON.stringify(myTasks)))
@@ -308,6 +310,16 @@ app.get("/getTasks", requireAuth, async(req, res)=>{
          
                
             })
+            }
+            catch{
+                tasksArr = tasksArr.filter(item => item !== element)
+                       console.log(tasksArr)
+                        myColl.updateOne({name:
+                           userDoc.name
+                        }, {$set:{tasks:tasksArr}})
+                     
+            }
+           
           
       });
       }
@@ -531,8 +543,9 @@ app.post("/login", async(req,res,next) =>{
      req.session.reload(()=>{
         req.session.otherusers = []
         myColl.findOne({$or:[{email:req.body.email},{name:req.body.email}]}).then((doc)=>{
+         
          if(doc!=null){
-            console.log(doc.emailVerified)
+           
             if(!doc.emailVerified){
                req.session.name =doc.name
                res.json({msg:"you need to verify email", canSign:false, verified:false, name:doc.name})
